@@ -28,7 +28,10 @@ def get_movies_sessions(
         try:
             formatted_time = datetime.strptime(session_date, "%Y-%m-%d")
         except ValueError:
-            raise ValueError(f"Wrong value {session_date}. Expected YYYY-MM-DD")
+            raise ValueError(
+                f"Wrong value {session_date}. "
+                f"Expected YYYY-MM-DD"
+            )
         query_set = query_set.filter(show_time__date=formatted_time.date())
 
     return query_set
