@@ -9,13 +9,10 @@ def create_movie_session(
         movie_id: int,
         cinema_hall_id: int
 ) -> None:
-    cinema_hall = CinemaHall.objects.get(id=cinema_hall_id)
-    movie = Movie.objects.get(id=movie_id)
-
     MovieSession.objects.create(
         show_time=movie_show_time,
-        movie=movie,
-        cinema_hall=cinema_hall
+        movie_id=movie_id,
+        cinema_hall_id=cinema_hall_id
     )
 
 
@@ -53,7 +50,6 @@ def update_movie_session(
 
     if movie_session is not None:
         if show_time is not None:
-            show_time = datetime.strftime(show_time, "%Y-%m-%d")
             movie_session.show_time = show_time
 
         if cinema_hall_id is not None:
